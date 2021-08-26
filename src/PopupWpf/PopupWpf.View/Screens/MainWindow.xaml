@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PopupWpf.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="900" Top="30" Left="30">
+        Title="Popup WPF" Height="600" Width="900" Top="30" Left="30">
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom" Height="40">
             <TextBlock>
