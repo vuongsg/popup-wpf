@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PopupWpf.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="600" Width="900" Top="30" Left="30">
     <DockPanel>
         <StatusBar DockPanel.Dock="Bottom" Height="40">
-            
+            <TextBlock>
+                <Run Text="You are looking " />
+                <Run Text="{Binding PhotoPath, UpdateSourceTrigger=PropertyChanged}" />
+            </TextBlock>
         </StatusBar>
 
         <Grid DockPanel.Dock="Top">
@@ -19,13 +22,31 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0">
-                <Button x:Name="btnChoose" Content="Choose photo" Click="btnChoose_Click" />
+                <Button x:Name="btnChoose" Width="100" Height="40" Margin="30,100" HorizontalAlignment="Left" VerticalAlignment="Top" Content="Choose photo" Click="btnChoose_Click" />
             </StackPanel>
 
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
 
             <Grid Grid.Column="2">
-                
+                <Border BorderThickness="2" Width="80" Height="80" Margin="30,30" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Border.BorderBrush" Value="Yellow" />
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="False">
+                                    <Setter Property="Border.BorderBrush" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Image x:Name="imgAvatar" Source="/Resources/male-avatar.jpg" MouseMove="imgAvatar_MouseMove" MouseLeave="imgAvatar_MouseLeave" />
+                </Border>
+                <Popup x:Name="popInfo" Width="800" Height="800" PlacementTarget="{Binding ElementName=imgAvatar}" Opacity="0.8" Placement="Bottom"
+                     HorizontalOffset="70" VerticalOffset="-80" MouseLeave="popInfo_MouseLeave">
+                    <Image Source="{Binding Source, ElementName=imgAvatar}" />
+                </Popup>
             </Grid>
         </Grid>
     </DockPanel>
